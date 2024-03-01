@@ -1,0 +1,226 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRA CỨU HÓA ĐƠN ĐIỆN TỬ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="container py-3">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12 logo">
+                    <img class="header-logo-img" src="{% static 'logo.jpg' %}" alt="Hóa đơn điện tử Invoicely">
+                </div>
+                
+                <div class="col-sm-6 col-xs12 info">
+
+                    <div class="item">
+                        <div class="icon">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                        <div class="text">
+                            <p>Thứ 2 - Thứ 7</p>
+                            <p><strong>8h00 - 18h00</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon">
+                            <i class="fa-solid fa-tty"></i>
+                        </div>
+                        <div class="text">
+                            <p>Hotline</p>
+                            <p><strong>0931 439 922</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="topBar" class="dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9 col-xs-12 options pt-3">
+                        <ul class="top-links list-inline ">
+                            <li class="list-inline-item">
+                                <a class="no-text-underline" href="#">TRA CỨU HÓA ĐƠN</a>
+                            </li>
+                            <li class="sep list-inline-item"">|</li>
+                            <li class="list-inline-item">
+                                <a class="no-text-underline" href="#">TRA CỨU PHIẾU XUẤT KHO</a>
+                            </li>
+                            <li class="sep list-inline-item"">|</li>
+                            <li class="list-inline-item">
+                                <a class="no-text-underline" href="#">LIÊN HỆ</a>
+                            </li>
+                            <li class="sep list-inline-item"">|</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3 col-xs-12 options pt-3">
+                        <ul class="top-links list-inline ">
+                            <li class="list-inline-item">
+                                <a class="no-text-underline" href="#">ĐĂNG NHẬP</a>
+                            </li>
+                            <li class="sep list-inline-item"">|</li>
+                            <li class="list-inline-item">
+                                <a class="no-text-underline" href="#">CÔNG CỤ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content my-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-9 col-xs-12">
+                    <table class="table">
+                        <tr>
+                            <th class="content-title">Ký hiệu mẫu số hóa đơn:</th>
+                            <th class="content-content">{{ invoice.invoice_sig }}</th>
+                        </tr>
+                        <tr>
+                            <th class="content-title">Số hóa đơn:</th>
+                            <th class="content-content">{{ invoice.invoice_num }}</th>
+                        </tr>
+                        <tr>
+                            <th class="content-title">Ngày hóa đơn:</th>
+                            <th class="content-content">{{ invoice.invoice_date|date:'d/m/Y' }}</th>
+                        </tr>
+                        <tr>
+                            <th class="content-title">Tiền thuế:</th>
+                            <th class="content-content">{{ invoice.tax|intcomma  }}</th>
+                        </tr>
+                        <tr>
+                            <th class="content-title">Tiền thanh toán:</th>
+                            <th class="content-content">{{ invoice.total|intcomma  }}</th>
+                        </tr>
+                        <tr>
+                            <th class="content-title">Mã tra cứu:</th>
+                            <th class="content-content">{{ invoice.invoice_check_code }}</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-9 col-xs-12">
+                    <a class="btn btn-warning button" href="{{ invoice.file.url }}">Tải hóa đơn PDF</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="my-5">
+        <!-- Footer -->
+        <footer class="text-center text-white" style="background-color: #494949">
+            <!-- Grid container -->
+            <div class="container">
+            <!-- Section: Links -->
+            <section class="mt-5">
+                <!-- Grid row-->
+                <div class="row text-center d-flex justify-content-center pt-5">
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                    <a href="#!" class="text-white">Báo giá</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+        
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                    <a href="#!" class="text-white">Sản phẩm</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+        
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                    <a href="#!" class="text-white">Mãu hóa đơn</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+        
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                    <a href="#!" class="text-white">Tin tức</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+        
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                    <a href="#!" class="text-white">Liên hệ</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+                </div>
+                <!-- Grid row-->
+            </section>
+            <!-- Section: Links -->
+        
+            <hr class="my-5" />
+        
+            <!-- Section: Text -->
+            <section class="mb-5">
+                <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <p>
+                    SỬ DỤNG NGAY HÓA ĐƠN ĐIỆN TỬ INVOICELY
+                    </p>
+                </div>
+                </div>
+            </section>
+            <!-- Section: Text -->
+        
+            <!-- Section: Social -->
+            <section class="text-center mb-5">
+                <a href="" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                <i class="fab fa-github"></i>
+                </a>
+            </section>
+            <!-- Section: Social -->
+            </div>
+            <!-- Grid container -->
+        
+            <!-- Copyright -->
+            <div
+                class="text-center p-3"
+                style="background-color: rgba(0, 0, 0, 0.2)"
+                >
+            © 2020 Copyright:
+            <a class="text-white" href="#"
+                >Invoicely</a
+                >
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+    </div>
+    <!-- End of .container -->
+</body>
+</html>
