@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'invoice',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
