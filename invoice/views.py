@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Invoice
+from .models import Invoice, FileTool
 
 # Create your views here.
 def check_invoice(request, code):
@@ -8,3 +8,11 @@ def check_invoice(request, code):
         "invoice" : invoice
     }
     return render(request, "invoice/index.html", context=context)
+
+
+def tool_list_view(request):
+    tool_list = FileTool.objects.all()
+    context = {
+        "tool_list" : tool_list
+    }
+    return render(request, "invoice/index2.html", context=context)

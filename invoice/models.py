@@ -12,3 +12,10 @@ class Invoice(models.Model):
 
     def __str__(self) -> str:
         return self.invoice_check_code
+
+class FileTool(models.Model):
+    title = models.CharField(max_length = 255)
+    link = models.TextField()
+
+    def __str__(self) -> str:
+        return self.title
