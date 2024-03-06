@@ -8,7 +8,8 @@ class Invoice(models.Model):
     tax = models.IntegerField()
     total = models.IntegerField()
     invoice_check_code = models.CharField(max_length = 100)
-    file = models.FileField(upload_to='media/')
+    file = models.FileField(upload_to='media/', blank=True)
+    link = models.TextField(default = '', blank = True)
 
     def __str__(self) -> str:
         return self.invoice_check_code

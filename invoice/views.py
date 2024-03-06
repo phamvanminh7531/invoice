@@ -4,8 +4,14 @@ from .models import Invoice, FileTool
 # Create your views here.
 def check_invoice(request, code):
     invoice = Invoice.objects.get(invoice_check_code = code)
+    url = ''
+    if invoice.link != '':
+        url = invoice.link
+    else:
+        url = invoice.file.url
     context = {
-        "invoice" : invoice
+        "invoice" : invoice,
+        "url" : url
     }
     return render(request, "invoice/index.html", context=context)
 

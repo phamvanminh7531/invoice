@@ -43,11 +43,7 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
 ]
 
-PREPEND_WWW = True
 
-MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
